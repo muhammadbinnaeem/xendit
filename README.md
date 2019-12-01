@@ -85,3 +85,4 @@ Request header: {
 	"Authorization":"Bearer ${token-return-in-login-request}"
 }
 ```
+NOTE: Xendit.postman_collection.json is also uploaded at root directory.
