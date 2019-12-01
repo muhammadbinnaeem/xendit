@@ -34,3 +34,54 @@ If it's at a non-standard location, specify the URL with the DOCKER_HOST environ
 Run with `sudo`
 
 4 - Open postman or any other tool for testing API and visit [localhost:8080](http://localhost:8080).
+
+## API Routes
+1 - Login with credentials:
+
+```bash
+Request URL: http://localhost:8080/api/v1/auth/login
+Request Method: POST
+Request body: {
+	"email":"mbinnaeem20@gmail.com",
+	"password":"Abc123@@"
+}
+```
+2 - Add comment:
+
+```bash
+Request URL: http://localhost:8080/api/v1/orgs/xendit/comments
+Request Method: POST
+Request header: {
+	"Authorization":"Bearer ${token-return-in-login-request}"
+}
+Request body: {
+	"comment":"This is a test comment"
+}
+```
+3 - Get comments:
+
+```bash
+Request URL: http://localhost:8080/api/v1/orgs/xendit/comments
+Request Method: GET
+Request header: {
+	"Authorization":"Bearer ${token-return-in-login-request}"
+}
+```
+4 - Delete comments:
+
+```bash
+Request URL: http://localhost:8080/api/v1/orgs/xendit/comments
+Request Method: DELETE
+Request header: {
+	"Authorization":"Bearer ${token-return-in-login-request}"
+}
+```
+5 - Get members:
+
+```bash
+Request URL: http://localhost:8080/api/v1/orgs/xendit/members
+Request Method: GET
+Request header: {
+	"Authorization":"Bearer ${token-return-in-login-request}"
+}
+```
