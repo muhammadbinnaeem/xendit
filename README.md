@@ -86,3 +86,19 @@ Request header: {
 }
 ```
 NOTE: Xendit.postman_collection.json is also uploaded at root directory.
+
+## Project summary
+On **docker-compose up -d**, four docker containers will be created:
+
+**mongo**: For database \
+**ms-auth**: For login and authenticating other services. It will work as API Gateway.\
+**ms-comments**: For comments module.\
+**ms-members**: For members module.
+
+## Packages used
+[Jest](https://www.npmjs.com/package/jest) and [supertest](https://www.npmjs.com/package/supertest) for testing.\
+[winston](https://www.npmjs.com/package/winston), [winston-daily-rotate-file](https://www.npmjs.com/package/winston-daily-rotate-file) and [morgan](https://www.npmjs.com/package/morgan) for logging.\
+[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) and [passport](https://www.npmjs.com/package/passport) for authentication.\
+[request-promise-native](https://www.npmjs.com/package/request-promise-native) for proxy request.\
+[mongoose-seed](https://www.npmjs.com/package/mongoose-seed) for seeding.\
+[mongoose-delete](https://www.npmjs.com/package/mongoose-delete) for soft delete.
