@@ -1,0 +1,14 @@
+[
+{
+	"model": "User",
+	"documents": [{
+			"email": "mark@gmail.com",
+			"password": "Abc123@@"
+		},
+		{
+			"email": "mbinnaeem20@gmail.com",
+			"password": "Abc123@@"
+		}
+		]
+}
+]

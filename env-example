@@ -1,0 +1,17 @@
+DATA_PATH_HOST=~/.xendit/data
+
+MS_AUTH_NODE_HOST_PORT=8080
+MS_COMMENTS_NODE_HOST_PORT=8081
+MS_MEMBERS_NODE_HOST_PORT=8082
+
+JWT_SECRET=addjsonwebtokensecretherelikeQuiscustodietipsoscustodes
+### MONGODB ###############################################
+
+MONGODB_PORT=27017
+# MongoDB Default Setup
+MONGO_INITDB_ROOT_USERNAME=admin
+MONGO_INITDB_ROOT_PASSWORD=admin
+MONGO_INITDB_DATABASE=ms_auth
+MONGO_MS_COMMENTS_DATABASE=ms_comments
+MONGO_MS_MEMBERS_DATABASE=ms_members
+

@@ -1,0 +1,73 @@
+[{
+	"model": "Member",
+	"documents": [{
+			"first_name": "Mark",
+			"last_name": "Benson",
+			"email": "mark@gmail.com",
+			"password": "Abc123@@",
+			"avatar_url": "dummy/s3/path",
+			"org_name": "xendit",
+			"followers": [{
+					"_id": 1,
+					"name": "User1"
+				},
+				{
+					"_id": 2,
+					"name": "User2"
+				},
+				{
+					"_id": 3,
+					"name": "User3"
+				},
+				{
+					"_id": 4,
+					"name": "User4"
+				}
+			],
+			"following": [{
+					"_id": 1,
+					"name": "User1"
+				},
+				{
+					"_id": 2,
+					"name": "User2"
+				},
+				{
+					"_id": 3,
+					"name": "User3"
+				}
+			]
+		},
+		{
+			"first_name": "Muhammad",
+			"last_name": "Bin Naeem",
+			"email": "mbinnaeem20@gmail.com",
+			"password": "Abc123@@",
+			"avatar_url": "dummy/s3/path",
+			"org_name": "xendit",
+			"followers": [{
+					"_id": 1,
+					"name": "Umar"
+				},
+				{
+					"_id": 2,
+					"name": "Rio"
+				}
+			],
+			"following": [{
+					"_id": 1,
+					"name": "Umar"
+				},
+				{
+					"_id": 2,
+					"name": "Rio"
+				},
+				{
+					"_id": 3,
+					"name": "Mark"
+				}
+			]
+		}
+	]
+}
+]

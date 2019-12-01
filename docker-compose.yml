@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  ### MongoDB ##############################################
+  mongo:
+    build: ./mongo
+    networks:
+      - gateway
+    ports:
+      - "${MONGODB_PORT}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_MS_COMMENTS_DATABASE: ${MONGO_MS_COMMENTS_DATABASE}
+      MONGO_MS_MEMBERS_DATABASE: ${MONGO_MS_MEMBERS_DATABASE}
+    volumes:
+      - ${DATA_PATH_HOST}/mongo:/data/db
+  ### Auth ##############################################
+  ms-auth:
+    build: ./ms-auth
+    restart: always
+    environment:
+      MONGO_LOCAL_CONN_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:${MONGODB_PORT}/${MONGO_INITDB_DATABASE}
+      JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - gateway
+    ports:
+      - "${MS_AUTH_NODE_HOST_PORT}:8080"
+    volumes:
+      - ${DATA_PATH_HOST}/ms-auth:/home/node/app
+    depends_on:
+      - mongo
+  ### Comments ##############################################
+  ms-comments:
+    build: ./ms-comments
+    restart: always
+    environment:
+      MONGO_LOCAL_CONN_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:${MONGODB_PORT}/${MONGO_MS_COMMENTS_DATABASE}
+    networks:
+      - gateway
+    ports:
+      - "${MS_COMMENTS_NODE_HOST_PORT}:8080"
+    volumes:
+      - ${DATA_PATH_HOST}/ms-comments:/home/node/app
+    depends_on:
+      - mongo
+  ### Members ##############################################
+  ms-members:
+    build: ./ms-members
+    restart: always
+    environment:
+      MONGO_LOCAL_CONN_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:${MONGODB_PORT}/${MONGO_MS_MEMBERS_DATABASE}
+    networks:
+      - gateway
+    ports:
+      - "${MS_MEMBERS_NODE_HOST_PORT}:8080"
+    volumes:
+      - ${DATA_PATH_HOST}/ms-members:/home/node/app
+    depends_on:
+      - mongo
+networks:
+  gateway: {}

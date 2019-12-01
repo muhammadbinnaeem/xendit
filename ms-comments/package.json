@@ -1,0 +1,30 @@
+{
+  "name": "ms-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "up": "npm run test && node index.js",
+    "test": "jest --forceExit --detectOpenHandles --maxWorkers=10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.13",
+    "mongoose-delete": "^0.5.1",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.3.0"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.1",
+    "supertest": "^4.0.2"
+  }
+}

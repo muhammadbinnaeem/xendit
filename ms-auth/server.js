@@ -1,0 +1,50 @@
+require('dotenv').config(); // Sets up dotenv as soon as our application starts
+
+const express = require('express'); 
+const bodyParser = require('body-parser');
+
+const app = express();
+const router = express.Router();
+const passport = require('passport');
+const mongoose = require('mongoose');
+// Logging
+const morgan = require('morgan');
+const Logger = require('./logger');
+const expressLogger = Logger('express');
+const databaseLogger = Logger('database');
+
+// Authorized and Unauthorized routes
+const unauthorized = require('./routes/unauthorized.js');
+const authorized = require('./routes/authorized.js');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(passport.initialize());
+
+// Passport Config
+require('./passport')(passport);
+
+app.use(morgan('combined', {
+  stream: expressLogger.stream
+}));
+// MongoDb Connection
+function connectWithRetry(){
+  mongoose.connect(process.env.MONGO_LOCAL_CONN_URL)
+    .catch(err => {
+        console.log(err);
+        setTimeout(connectWithRetry, 5000)
+      });
+}
+connectWithRetry();
+// Mongoose debuging and loging through winston
+mongoose.set('debug', (collectionName, method, query, doc) => {
+  databaseLogger.info(`Mongoose: ${collectionName}.${method}(${JSON.stringify(query)}, ${JSON.stringify(doc)})`);
+});
+
+app.use('/api/v1/auth', unauthorized(router));
+// JWT middleware for route require authentication
+app.use('/api/v1/orgs', passport.authenticate('jwt', {session: false}),authorized(router));
+
+module.exports = app;
