@@ -1,6 +1,5 @@
-# Xendit Test
+# Microservice architecture with node js and MongoDB
 
-Microservice architecture with node js and MongoDB.
 
 ## Project Setup with Docker
 
